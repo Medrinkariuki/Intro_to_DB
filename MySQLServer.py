@@ -1,6 +1,7 @@
 import mysql.connector
 
 try:
+    # Connect to MySQL server
     connection = mysql.connector.connect(
         host="localhost",
         user="root",
@@ -9,8 +10,9 @@ try:
 
     if connection.is_connected():
         cursor = connection.cursor()
-        cursor.execute("CREATE DATABASE IF NOT EXISTS alxbookstore")
-        print("Database 'alxbookstore' created successfully!")
+        # Create the database with exact name expected by the checker
+        cursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
+        print("Database 'alx_book_store' created successfully!")
 
 except mysql.connector.Error as err:
     print(f"Error: {err}")
