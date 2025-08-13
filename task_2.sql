@@ -47,12 +47,11 @@ CREATE TABLE Orders (
     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
--- OrderDetails table
-CREATE TABLE OrderDetails (
+CREATE TABLE Order_Details (
     order_detail_id INT PRIMARY KEY AUTO_INCREMENT,
     order_id INT,
     book_id INT,
-    quantity INT DEFAULT 1,
+    quantity DOUBLE DEFAULT 1,
     price DECIMAL(10,2),
     FOREIGN KEY (order_id) REFERENCES Orders(order_id),
     FOREIGN KEY (book_id) REFERENCES Books(book_id)
