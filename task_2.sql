@@ -15,26 +15,25 @@ DROP TABLE IF EXISTS ORDERS;
 DROP TABLE IF EXISTS BOOKS;
 DROP TABLE IF EXISTS AUTHORS;
 DROP TABLE IF EXISTS CUSTOMERS;
-
--- AUTHORS table
-CREATE TABLE AUTHORS (
+-- Authors table
+CREATE TABLE Authors (
     author_id INT PRIMARY KEY AUTO_INCREMENT,
     author_name VARCHAR(100) NOT NULL,
     bio TEXT
 );
 
--- BOOKS table
-CREATE TABLE BOOKS (
+-- Books table
+CREATE TABLE Books (
     book_id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(200) NOT NULL,
     author_id INT,
     price DECIMAL(10,2),
     stock INT DEFAULT 0,
-    FOREIGN KEY (author_id) REFERENCES AUTHORS(author_id)
+    FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
--- CUSTOMERS table
-CREATE TABLE CUSTOMERS (
+-- Customers table
+CREATE TABLE Customers (
     customer_id INT PRIMARY KEY AUTO_INCREMENT,
     customer_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE,
@@ -42,22 +41,22 @@ CREATE TABLE CUSTOMERS (
     address TEXT
 );
 
--- ORDERS table
-CREATE TABLE ORDERS (
+-- Orders table
+CREATE TABLE Orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
     customer_id INT,
     order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     total DECIMAL(10,2) DEFAULT 0,
-    FOREIGN KEY (customer_id) REFERENCES CUSTOMERS(customer_id)
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
--- ORDER_DETAILS table
-CREATE TABLE ORDER_DETAILS (
+-- OrderDetails table
+CREATE TABLE OrderDetails (
     order_detail_id INT PRIMARY KEY AUTO_INCREMENT,
     order_id INT,
     book_id INT,
     quantity INT DEFAULT 1,
     price DECIMAL(10,2),
-    FOREIGN KEY (order_id) REFERENCES ORDERS(order_id),
-    FOREIGN KEY (book_id) REFERENCES BOOKS(book_id)
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY (book_id) REFERENCES Books(book_id)
 );
