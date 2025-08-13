@@ -31,16 +31,13 @@ CREATE TABLE Books (
     stock INT DEFAULT 0,
     FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
-
--- Customers table
 CREATE TABLE Customers (
     customer_id INT PRIMARY KEY AUTO_INCREMENT,
-    customer_name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE,
+    customer_name VARCHAR(215) NOT NULL,
+    email VARCHAR(215) UNIQUE,
     phone VARCHAR(20),
     address TEXT
 );
-
 -- Orders table
 CREATE TABLE Orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
